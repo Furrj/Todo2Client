@@ -31,19 +31,35 @@ const NewTodo = (props) => {
   };
 
   return (
-    <div className="card m-3" style={{ width: "30%" }}>
+    <div
+      className="card m-3"
+      style={{ width: "30%", backgroundColor: "aquamarine" }}
+    >
       <div className="card-body">
         <h3 className="card-title">
-          <input onChange={titleInputHandler} value={title} type="text" />
+          <input
+            className="form-control"
+            onChange={titleInputHandler}
+            value={title}
+            type="text"
+          />
         </h3>
         <hr />
         <div className="card-text">
-          <textarea onChange={textInputHandler} value={text} />
+          <textarea
+            className="form-control mb-3"
+            onChange={textInputHandler}
+            value={text}
+          />
         </div>
         <hr />
         <div className="card-text">
-          <button onClick={sendData}>Add</button>
-          <button onClick={props.onSubmit}>Cancel</button>
+          <button className="btn btn-info me-3" onClick={sendData}>
+            Add
+          </button>
+          <button className="btn btn-danger" onClick={props.onSubmit}>
+            Cancel
+          </button>
         </div>
       </div>
     </div>

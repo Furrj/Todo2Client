@@ -1,12 +1,12 @@
 body {
   text-align: center;
+  background-color: rgb(18, 55, 55);
 }
 
 .allTodosCont {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  background-color: rgba(236, 140, 194, 0.5);
   align-items: center;
 }
 

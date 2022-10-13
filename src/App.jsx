@@ -1,15 +1,24 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import Navbar from "./layouts/Navbar";
+import Footer from "./layouts/Footer";
 import AllTodos from "./views/AllTodos";
+import AboutMe from "./views/AboutMe";
+import ContactInfo from "./views/ContactInfo";
+import LoginPage from "./views/LoginPage";
 
 const App = () => {
   return (
     <div>
-      <h1>Todo 2.0</h1>
       <BrowserRouter>
+        <Navbar />
         <Routes>
           <Route path="/" element={<AllTodos />} />
+          <Route path="/about" element={<AboutMe />} />
+          <Route path="/contact" element={<ContactInfo />} />
+          <Route path="/login" element={<LoginPage />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </div>
   );

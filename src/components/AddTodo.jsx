@@ -6,7 +6,7 @@ const AddTodo = (props) => {
       <div
         className="card m-3"
         onClick={props.onClick}
-        style={{ width: "30%" }}
+        style={{ width: "30%", backgroundColor: "aquamarine" }}
       >
         <div className="card-body addTodo">
           <h1 className="card-text">+</h1>

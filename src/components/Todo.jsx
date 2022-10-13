@@ -16,14 +16,18 @@ const Todo = (props) => {
   const sendDelete = async () => {
     const { id } = props;
 
-    try {
-      await fetch(`http://localhost:5000/api/${id}`, {
-        method: "DELETE",
-      })
-        .then((res) => res.json())
-        .then(() => props.afterDelete());
-    } catch (e) {
-      console.log(`Error: ${e}`);
+    if (!editMode) {
+      try {
+        await fetch(`http://localhost:5000/api/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then(() => props.afterDelete());
+      } catch (e) {
+        console.log(`Error: ${e}`);
+      }
+    } else if (editMode) {
+      setEditMode(false);
     }
   };
 
@@ -57,11 +61,16 @@ const Todo = (props) => {
   };
 
   return (
-    <div className="card m-3" style={{ width: "30%" }}>
+    <div className="card m-3" style={{ width: "30%", backgroundColor: "aquamarine" }}>
       <div className="card-body">
         <h3 className="card-title">
           {editMode ? (
-            <input onChange={titleChangeHandler} type="text" value={title} />
+            <input
+              className="form-control"
+              onChange={titleChangeHandler}
+              type="text"
+              value={title}
+            />
           ) : (
             title
           )}
@@ -69,7 +78,11 @@ const Todo = (props) => {
         <hr />
         <div className="card-text">
           {editMode ? (
-            <textarea onChange={textChangeHandler} value={text}></textarea>
+            <textarea
+              className="form-control"
+              onChange={textChangeHandler}
+              value={text}
+            ></textarea>
           ) : (
             text
           )}
@@ -77,7 +90,7 @@ const Todo = (props) => {
         <hr />
         <div className="card-text">
           <button onClick={toggleEdit}>{editMode ? "Submit" : "Edit"}</button>
-          <button onClick={sendDelete}>Delete</button>
+          <button onClick={sendDelete}>{editMode ? "Cancel" : "Delete"}</button>
         </div>
       </div>
     </div>
