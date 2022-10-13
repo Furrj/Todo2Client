@@ -89,8 +89,8 @@ const Todo = (props) => {
         </div>
         <hr />
         <div className="card-text">
-          <button onClick={toggleEdit}>{editMode ? "Submit" : "Edit"}</button>
-          <button onClick={sendDelete}>{editMode ? "Cancel" : "Delete"}</button>
+          <button className="btn btn-info me-3 text-light" onClick={toggleEdit}>{editMode ? "Submit" : "Edit"}</button>
+          <button className="btn btn-secondary text-light" onClick={sendDelete}>{editMode ? "Cancel" : "Delete"}</button>
         </div>
       </div>
     </div>

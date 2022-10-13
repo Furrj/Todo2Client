@@ -54,10 +54,10 @@ const NewTodo = (props) => {
         </div>
         <hr />
         <div className="card-text">
-          <button className="btn btn-info me-3" onClick={sendData}>
+          <button className="btn btn-info me-3 text-light" onClick={sendData}>
             Add
           </button>
-          <button className="btn btn-danger" onClick={props.onSubmit}>
+          <button className="btn btn-danger text-light" onClick={props.onSubmit}>
             Cancel
           </button>
         </div>
