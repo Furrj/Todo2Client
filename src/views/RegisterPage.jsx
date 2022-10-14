@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
 
+import UsernameErr from "../components/Alerts/RegisterPage/UsernameErr";
+import InvalidFormData from "../components/Alerts/RegisterPage/InvalidFormData";
+
 const RegisterPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -8,10 +11,10 @@ const RegisterPage = () => {
   const [sentInfo, setSentInfo] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [passordsMatch, setPasswordsMatch] = useState(false);
+  const [invalidUsername, setInvalidUsername] = useState(false);
+  const [invalidFormData, setInvalidFormData] = useState(false);
 
   const passwordErrMessage = <div>Passwords must match</div>;
-
-  const usernameErrMessage = <div>Username Taken</div>;
 
   const usernameInputHandler = (e) => {
     setUsername(e.target.value);
@@ -23,7 +26,7 @@ const RegisterPage = () => {
     if (secondPassword !== e.target.value) {
       setPasswordError(true);
       setPasswordsMatch(false);
-    } else if (secondPassword === e.target.value) {
+    } else if (secondPassword === e.target.value && e.target.value !== "") {
       setPasswordError(false);
       setPasswordsMatch(true);
     }
@@ -35,7 +38,7 @@ const RegisterPage = () => {
     if (password !== e.target.value) {
       setPasswordError(true);
       setPasswordsMatch(false);
-    } else if (password === e.target.value) {
+    } else if (password === e.target.value && password !== "") {
       setPasswordError(false);
       setPasswordsMatch(true);
     }
@@ -47,7 +50,11 @@ const RegisterPage = () => {
       password,
     };
 
-    submitInfo(data);
+    if (!username || !password) {
+      setInvalidFormData(true);
+    } else if (username && password) {
+      submitInfo(data);
+    }
   };
 
   const submitInfo = (data) => {
@@ -63,15 +70,24 @@ const RegisterPage = () => {
         .then((data) => {
           console.log(data);
           if (data === "Taken") {
-            errMessage = <div>Username Taken</div>;
-            setPasswordError(true);
-          } else if (data === "Saved") {
+            takenUsername();
+          } else if (data === "Registered") {
             setSentInfo(true);
           }
         });
     } catch (e) {
       console.log(`Error: ${e}`);
     }
+  };
+
+  const takenUsername = () => {
+    setInvalidUsername(true);
+  };
+
+  const resetForm = () => {
+    setUsername("");
+    setPassword("");
+    setSecondPassword("");
   };
 
   return (
@@ -92,6 +108,7 @@ const RegisterPage = () => {
             id="username"
           />
         </h5>
+        {invalidUsername && <UsernameErr resetForm={resetForm} />}
         <hr />
         <h5 className="card-text">
           <label htmlFor="password" className="mb-1">
@@ -126,6 +143,7 @@ const RegisterPage = () => {
           )}
           {passwordError ? passwordErrMessage : ""}
           {sentInfo && <Navigate replace to="/" />}
+          {invalidFormData && <InvalidFormData resetForm={resetForm} />}
         </div>
       </div>
     </div>
