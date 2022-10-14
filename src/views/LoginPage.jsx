@@ -38,10 +38,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div
-      className="card mx-auto mt-3"
-      style={{ width: "50%", backgroundColor: "aquamarine" }}
-    >
+    <div className="card mx-auto mt-3 loginCard">
       <div className="card-body">
         <h5 className="card-title">
           <label htmlFor="username" className="mb-1">

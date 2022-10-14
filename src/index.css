@@ -3,6 +3,30 @@ body {
   background-color: rgb(18, 55, 55);
 }
 
+.wrapper {
+  min-height: 100%;
+  margin-bottom: 50px;
+}
+
+.push {
+  height: 50px;
+}
+
+.regCard {
+  width: 60%;
+  background-color: aquamarine;
+}
+
+.loginCard {
+  width: 60%;
+  background-color: aquamarine;
+}
+
+.todo {
+  width: 30%;
+  background-color: aquamarine;
+}
+
 .allTodosCont {
   display: flex;
   flex-direction: row;
@@ -23,6 +47,26 @@ body {
 }
 
 .addTodo h1 {
-  color: red;
+  color: goldenrod;
   font-size: 500%;
+}
+
+@media only screen and (max-width: 450px) {
+  .allTodosCont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .todo {
+    width: 80%;
+  }
+
+  .regCard {
+    width: 80%;
+  }
+
+  .loginCard {
+    width: 80%;
+  }
 }

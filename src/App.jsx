@@ -11,7 +11,7 @@ import RegisterPage from "./views/RegisterPage";
 
 const App = () => {
   return (
-    <div>
+    <div className="wrapper">
       <BrowserRouter>
         <Navbar />
         <Routes>
@@ -24,6 +24,7 @@ const App = () => {
         </Routes>
         <Footer />
       </BrowserRouter>
+      <div className="push"></div>
     </div>
   );
 };

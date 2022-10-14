@@ -61,10 +61,7 @@ const Todo = (props) => {
   };
 
   return (
-    <div
-      className="card m-3"
-      style={{ width: "30%", backgroundColor: "aquamarine" }}
-    >
+    <div className="card m-3 todo">
       <div className="card-body">
         <h3 className="card-title">
           {editMode ? (
