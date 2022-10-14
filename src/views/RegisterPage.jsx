@@ -9,7 +9,9 @@ const RegisterPage = () => {
   const [passwordError, setPasswordError] = useState(false);
   const [passordsMatch, setPasswordsMatch] = useState(false);
 
-  const errMessage = <div>Passwords must match</div>;
+  const passwordErrMessage = <div>Passwords must match</div>;
+
+  const usernameErrMessage = <div>Username Taken</div>;
 
   const usernameInputHandler = (e) => {
     setUsername(e.target.value);
@@ -50,7 +52,7 @@ const RegisterPage = () => {
 
   const submitInfo = (data) => {
     try {
-      fetch("http://localhost:5000/login", {
+      fetch("http://localhost:5000/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -58,8 +60,14 @@ const RegisterPage = () => {
         body: JSON.stringify(data),
       })
         .then((res) => res.json())
-        .then(() => {
-          setSentInfo(true);
+        .then((data) => {
+          console.log(data);
+          if (data === "Taken") {
+            errMessage = <div>Username Taken</div>;
+            setPasswordError(true);
+          } else if (data === "Saved") {
+            setSentInfo(true);
+          }
         });
     } catch (e) {
       console.log(`Error: ${e}`);
@@ -116,7 +124,7 @@ const RegisterPage = () => {
               Register
             </button>
           )}
-          {passwordError ? errMessage : ""}
+          {passwordError ? passwordErrMessage : ""}
           {sentInfo && <Navigate replace to="/" />}
         </div>
       </div>
