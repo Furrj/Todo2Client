@@ -14,7 +14,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && rm -rf ../api/client && cp -r build ../api/client",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
